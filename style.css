@@ -7,8 +7,8 @@
 
 /* Base page styles */
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f1f1f1;
+  font-family: Helvetica, sans-serif;
+  background-color: #000000;
   padding: 20px;
 }
 
@@ -29,9 +29,9 @@ body {
 }
 
 h1 {
-  font-family: Verdana, sans-serif;
+  font-family: Helvetica, sans-serif;
   font-weight: bold;
-  color: #212121;
+  color: #ffffff;
 }
 
 /* Logo */
@@ -43,48 +43,50 @@ h1 {
 /* Date‐picker & button row */
 .filters {
   display: flex;
-  flex-direction: column;
-  gap: 10px;
-  justify-content: center;
+  flex-direction: column; /* Stack items vertically by default */
+  gap: 10px; /* Add spacing between items */
+  justify-content: center; /* Center items vertically */
+  align-items: center; /* Align items horizontally */
   margin-bottom: 20px;
   padding: 0 20px;
 }
 
-/* Inputs and buttons */
-input[type="date"],
-button {
-  font-family: Arial, sans-serif;
-  font-weight: normal;
-  color: #666;
-  padding: 10px 15px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 16px;
-  line-height: 1.4;
-  width: 100%;
-}
-
-/* Button specific */
-button {
-  background-color: #d3d3d3;
-  color: black;
-  cursor: pointer;
-}
-button:hover {
-  background-color: #bfbfbf;
-}
-
-/* Stack horizontally on wider screens */
 @media (min-width: 600px) {
   .filters {
-    flex-direction: row;
-    padding: 0;
+    flex-direction: row; /* Stack items horizontally on wider screens */
+    align-items: center; /* Align items to the center vertically */
+    justify-content: center; /* Center items horizontally */
   }
-  
-  input[type="date"],
-  button {
-    width: auto;
-  }
+}
+
+/* Ensure consistent styles for date pickers and buttons */
+input[type="date"],
+.get-images-btn {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 16px; /* Same font size */
+  line-height: 1.4; /* Same line height */
+  padding: 10px 15px; /* Same padding */
+  border: 1px solid #ddd; /* Same border */
+  border-radius: 4px; /* Same border radius */
+  height: 44px; /* Set a consistent height */
+  box-sizing: border-box; /* Ensure padding and border are included in the height */
+  vertical-align: middle; /* Align items consistently */
+}
+
+/* Specific styles for the "Get Space Images" button */
+.get-images-btn {
+  background-color: #ff0015; /* Red background */
+  color: white; /* White text */
+  border: none; /* Remove border */
+  text-align: center; /* Center text */
+  text-decoration: none; /* Remove underline */
+  display: inline-block; /* Inline-block for proper alignment */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s ease; /* Smooth hover effect */
+}
+
+.get-images-btn:hover {
+  background-color: #cc0012; /* Darker red on hover */
 }
 
 /* Gallery flex container */
@@ -101,7 +103,6 @@ button:hover {
   flex: 1 1 100%;  /* full width by default */
   min-width: 280px;
   max-width: 500px;
-  background: white;
   padding: 10px;
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
@@ -118,10 +119,15 @@ button:hover {
 }
 
 .gallery-item img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 4px;
+  width: 100%; /* Make the image take up the full width of its container */
+  height: 200px; /* Set a fixed height for consistent proportions */
+  object-fit: cover; /* Ensures the image fills the container while maintaining aspect ratio */
+  border-radius: 8px;
+  transition: transform 0.3s ease; /* Smooth scaling effect */
+}
+
+.gallery-item img:hover {
+  transform: scale(1.1); /* Scale the image slightly on hover */
 }
 
 .gallery-item p {
@@ -135,10 +141,77 @@ button:hover {
   flex: 1 1 100%;
   text-align: center;
   padding: 40px;
-  color: #666;
+  color: #000000;
 }
 
 .placeholder-icon {
   font-size: 48px;
   margin-bottom: 20px;
+}
+
+/* Ensure a maximum of 3 images per row on wider screens */
+@media (min-width: 1000px) {
+  .image-item {
+    flex: 0 1 calc(33.33% - 16px); /* Each item takes up 1/3 of the row, minus the gap */
+  }
+}
+
+/* Ensure proper spacing between rows */
+.image-gallery {
+  display: flex;
+  flex-wrap: wrap; /* Allow items to wrap to the next row */
+  gap: 16px; /* Space between items */
+  justify-content: center; /* Center items horizontally */
+  margin: 0 auto; /* Center the gallery container itself */
+  padding: 20px; /* Add padding around the gallery */
+}
+
+.image-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center content horizontally */
+  justify-content: space-between; /* Space out content vertically */
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 8px;
+  max-width: 300px;
+}
+
+.image-item img {
+  width: 100%; /* Make the image take up the full width of its container */
+  height: 200px; /* Set a fixed height for consistent proportions */
+  object-fit: cover; /* Ensures the image fills the container while maintaining aspect ratio */
+  border-radius: 8px;
+  transition: transform 0.3s ease; /* Smooth scaling effect */
+}
+
+.image-item img:hover {
+  transform: scale(1.1); /* Scale the image slightly on hover */
+}
+
+.image-item h3 {
+  font-size: 1.2em;
+  margin: 8px 0;
+  color: #ffffff; /* Change this to your desired color */
+}
+
+.image-item p {
+  font-size: 0.9em;
+  color: #ffffff;
+}
+
+.image-item button {
+  background-color: rgb(255, 255, 255); 
+  color: rgb(0, 0, 0); 
+  border: none; /* Remove border */
+  padding: 10px 15px; /* Add padding */
+  border-radius: 4px; /* Rounded corners */
+  font-size: 14px; /* Font size */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s ease; /* Smooth hover effect */
+  margin-top: auto; /* Push the button to the bottom of the box */
+}
+
+.image-item button:hover {
+  background-color: #333; /* Slightly lighter black on hover */
 }
